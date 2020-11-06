@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\img\Shawarma world\**" />
+    <Content Remove="wwwroot\img\Shawarma world\**" />
+    <EmbeddedResource Remove="wwwroot\img\Shawarma world\**" />
+    <None Remove="wwwroot\img\Shawarma world\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\Food\Burger King\" />
+    <Folder Include="wwwroot\img\Food\KFC\" />
+    <Folder Include="wwwroot\img\Food\SUSHI BOX\" />
+    <Folder Include="wwwroot\img\Sushi Box\" />
+    <Folder Include="wwwroot\img\MyBox\" />
+    <Folder Include="wwwroot\img\KFC\" />
+    <Folder Include="wwwroot\img\ImgLable\" />
+  </ItemGroup>
+
+</Project>

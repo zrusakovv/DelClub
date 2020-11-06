@@ -1,0 +1,20 @@
+﻿@model IEnumerable<string>
+
+
+@foreach (string category in Model)
+{
+    <a class="btn btn-light py-3 px-3 @(category == ViewBag.SelectedCategory ? "btn-info" : "btn-secondary")"
+       asp-action="Index"
+       asp-controller="Home"
+       asp-route-category="@category">
+
+
+        <img width="60" height="60" src="~/img/NavMen.jpg" asp-append-version="true">
+
+        <div class="position-static text-dark">
+            <b>@category</b>
+        </div>
+    </a>
+    
+}
+

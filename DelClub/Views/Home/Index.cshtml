@@ -1,0 +1,156 @@
+﻿@model RestaurantListViewModel
+
+
+<div class="container col-12 bg-light">
+
+    <div class="container col-11 bg-white">
+
+        <h1 class="text-left mt-5 ml-5">Рестораны</h1>
+
+        <div class="row mt-5 ml-5 text-left">
+            <div id="categories" class="col-10 mt-5">
+                @await Component.InvokeAsync("NavigationMenu")
+            </div>
+        </div>
+
+
+        <a class="btn btn-outline-light text-dark ml-5" asp-action="ListFood" asp-controller="Food">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/Makdonalds.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>Макдональдс</h3>
+            </div>
+
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        <i class="fa fa-star" aria-hidden="true">4,7</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+
+        <a class="btn btn-light ml-5" asp-action="FoodCategory" asp-controller="Food">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/KFC.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>KFC</h3>
+            </div>
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        <i class="fa fa-star" aria-hidden="true">4,7</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+
+        <a class="btn btn-light ml-5" asp-action="BurgerKingList" asp-controller="BurgerKing">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/Burger King.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>Burger King</h3>
+            </div>
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary text-warning">
+                        <i class="fa fa-star" aria-hidden="true">4,8</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+
+        <a class="btn btn-light ml-5" asp-action="SushiBoxList" asp-controller="SushiBox">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/SUSHI BOX.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>Sushi Box</h3>
+            </div>
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary text-warning">
+                        <i class="fa fa-star" aria-hidden="true">4,8</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+
+        <a class="btn btn-light ml-5" asp-action="MyBoxList" asp-controller="MyBox">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/Burger King.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>MyBox</h3>
+            </div>
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary text-warning">
+                        <i class="fa fa-star" aria-hidden="true">4,8</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+
+        <a class="btn btn-light ml-5" asp-action="DominoPizzaList" asp-controller="DominoPizza">
+
+            <img class="card-img-top rounded" src="~/img/Restaurants/Burger King.jpg" asp-append-version="true">
+
+            <div class="card-header text-left">
+                <h3>DominoPizza</h3>
+            </div>
+
+            <h4>
+                <span class="badge badge-pill badge-light mt-2" style="float:left">
+                    <small class="badge badge-light text-success text-success">
+                        55 мин
+                    </small>
+                    <small class="badge badge-light text-secondary">
+                        От 1 Р
+                    </small>
+                    <small class="badge badge-light text-secondary text-warning">
+                        <i class="fa fa-star" aria-hidden="true">4,8</i>
+                    </small>
+                </span>
+            </h4>
+        </a>
+    </div>
+</div>

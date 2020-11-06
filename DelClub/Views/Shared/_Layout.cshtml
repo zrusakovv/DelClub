@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DelClub</title>
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container col-12 border">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+                <h2><i class="fas fa-crow">Del Club</i></h2>
+            </a>
+            <form class="form-inline ">
+                <h3>Корзина<i class="fa fa-shopping-cart" aria-hidden="true"></i></h3>
+            </form>
+        </nav>
+    </div>
+    @RenderBody()
+</body>
+</html>
