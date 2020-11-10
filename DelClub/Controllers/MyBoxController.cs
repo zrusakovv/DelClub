@@ -52,5 +52,32 @@ namespace DelClub.Controllers
             }
             return RedirectToAction("MyBoxList", new { returnUrl });
         }
+
+        public ViewResult Checkout() => View(new MBOrder());
+
+        [HttpPost]
+        public IActionResult Checkout(MBOrder order)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Извините ваша корзина пуста");
+            }
+            if (ModelState.IsValid)
+            {
+                order.Lines = cart.Lines.ToArray();
+                repository.SaveMBOrder(order);
+                cart.Clear();
+                return RedirectToAction(nameof(Completed));
+            }
+            else
+            {
+                return View(order);
+            }
+        }
+
+        public ViewResult Completed()
+        {
+            return View();
+        }
     }
 }

@@ -45,6 +45,7 @@ namespace DelClub
             services.AddTransient<ISushiBoxRepository, EFSushiBoxRepository>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
 
+
             services.AddScoped(sp => SessioïCart.GetCart(sp));
             services.AddScoped(sp => SessionBurgerKing.GetCart(sp));
             services.AddScoped(sp => SessionDominoPizza.GetCart(sp));

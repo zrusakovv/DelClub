@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,6 +42,7 @@ namespace DelClub.Models.ViewModels
 
     public class BKCartLine
     {
+        [Key]
         public int CartLineId { get; set; }
         public BurgerKing BurgerKing { get; set; }
         public int Quantity { get; set; }

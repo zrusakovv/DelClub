@@ -15,5 +15,10 @@ namespace DelClub.Models.Data
         public DbSet<MyBox> MyBoxes { get; set; }
         public DbSet<SushiBox> SushiBoxes { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<BKOrder> BKOrders { get; set; }
+        public DbSet<DPOrder> DPOrders { get; set; }
+        public DbSet<KfcOrder> KfcOrders { get; set; }
+        public DbSet<MBOrder> MBOrders { get; set; }
+        public DbSet<SBOrder> SBOrders { get; set; }
     }
 }

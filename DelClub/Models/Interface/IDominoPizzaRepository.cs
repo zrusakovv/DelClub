@@ -8,5 +8,7 @@ namespace DelClub.Models.Interface
     public interface IDominoPizzaRepository
     {
         IEnumerable<DominoPizza> DominoPizzas { get; }
+        IQueryable<DPOrder> DPOrders { get; }
+        void SaveDPOrder(DPOrder order);
     }
 }

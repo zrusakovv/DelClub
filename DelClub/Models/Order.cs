@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using DelClub.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace DelClub.Models
 
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
+
 
         [Required(ErrorMessage = "Введите имя")]
         public string Name { get; set; }

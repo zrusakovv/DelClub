@@ -8,5 +8,7 @@ namespace DelClub.Models.Interface
     public interface IMyBoxRepository
     {
         IEnumerable<MyBox> MyBoxes { get; }
+        IQueryable<MBOrder> MBOrders { get; }
+        void SaveMBOrder(MBOrder order);
     }
 }

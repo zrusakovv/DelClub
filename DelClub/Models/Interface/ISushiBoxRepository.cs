@@ -8,5 +8,7 @@ namespace DelClub.Models.Interface
     public interface ISushiBoxRepository
     {
         IEnumerable<SushiBox> SushiBoxes { get; }
+        IQueryable<SBOrder> SBOrders { get; }
+        void SaveSBOrder(SBOrder order);
     }
 }

@@ -8,5 +8,7 @@ namespace DelClub.Models.Interface
     public interface IBurgerKingRepository
     {
         IEnumerable<BurgerKing> BurgerKings { get; }
+        IQueryable<BKOrder> BKOrders { get; }
+        void SaveBKOrder(BKOrder order);
     }
 }
