@@ -10,5 +10,7 @@ namespace DelClub.Models.Interface
         IEnumerable<DominoPizza> DominoPizzas { get; }
         IQueryable<DPOrder> DPOrders { get; }
         void SaveDPOrder(DPOrder order);
+        void SaveProduct(DominoPizza dominoPizza);
+        DominoPizza DeleteProduct(int Id);
     }
 }

@@ -53,6 +53,19 @@ namespace DelClub.Controllers
             return RedirectToAction("MyBoxList", new { returnUrl });
         }
 
+        public ViewResult ListOrder() => View(repository.MBOrders.Where(o => !o.Shipped));
+        [HttpPost]
+        public IActionResult MarkShipped(int id)
+        {
+            MBOrder mBOrder = repository.MBOrders.FirstOrDefault(o => o.Id == id);
+            if (mBOrder != null)
+            {
+                mBOrder.Shipped = true;
+                repository.SaveMBOrder(mBOrder);
+            }
+            return RedirectToAction(nameof(ListOrder));
+        }
+
         public ViewResult Checkout() => View(new MBOrder());
 
         [HttpPost]
@@ -78,6 +91,39 @@ namespace DelClub.Controllers
         public ViewResult Completed()
         {
             return View();
+        }
+
+        public ViewResult Index() => View(repository.MyBoxes);
+
+        public ViewResult Edit(int Id) =>
+            View(repository.MyBoxes.FirstOrDefault(p => p.Id == Id));
+
+        [HttpPost]
+        public IActionResult Edit(MyBox myBox)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(myBox);
+                TempData["message"] = $"{myBox.Name} был сохранен";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(myBox);
+            }
+        }
+
+        public ViewResult Create() => View("Edit", new MyBox());
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            MyBox deletedProduct = repository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"{deletedProduct.Name} был удален";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

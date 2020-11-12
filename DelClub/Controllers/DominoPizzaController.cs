@@ -53,6 +53,19 @@ namespace DelClub.Controllers
             return RedirectToAction("DominoPizzaList", new { returnUrl });
         }
 
+        public ViewResult ListOrder() => View(repository.DPOrders.Where(o => !o.Shipped));
+        [HttpPost]
+        public IActionResult MarkShipped(int id)
+        {
+            DPOrder dPOrder = repository.DPOrders.FirstOrDefault(o => o.Id == id);
+            if (dPOrder != null)
+            {
+                dPOrder.Shipped = true;
+                repository.SaveDPOrder(dPOrder);
+            }
+            return RedirectToAction(nameof(ListOrder));
+        }
+
         public ViewResult Checkout() => View(new DPOrder());
 
         [HttpPost]
@@ -78,6 +91,39 @@ namespace DelClub.Controllers
         public ViewResult Completed()
         {
             return View();
+        }
+
+        public ViewResult Index() => View(repository.DominoPizzas);
+
+        public ViewResult Edit(int Id) =>
+            View(repository.DominoPizzas.FirstOrDefault(p => p.Id == Id));
+
+        [HttpPost]
+        public IActionResult Edit(DominoPizza dominoPizza)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(dominoPizza);
+                TempData["message"] = $"{dominoPizza.Name} был сохранен";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(dominoPizza);
+            }
+        }
+
+        public ViewResult Create() => View("Edit", new DominoPizza());
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            DominoPizza deletedProduct = repository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"{deletedProduct.Name} был удален";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

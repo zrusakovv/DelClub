@@ -31,5 +31,37 @@ namespace DelClub.Models.EFData
             }
             context.SaveChanges();
         }
+
+        public void SaveProduct(SushiBox sushiBox)
+        {
+            if (sushiBox.Id == 0)
+            {
+                context.SushiBoxes.Add(sushiBox);
+            }
+            else
+            {
+                SushiBox dbEntry = context.SushiBoxes.FirstOrDefault(p => p.Id == sushiBox.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Img = sushiBox.Img;
+                    dbEntry.Name = sushiBox.Name;
+                    dbEntry.Description = sushiBox.Description;
+                    dbEntry.Category = sushiBox.Category;
+                    dbEntry.Price = sushiBox.Price;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public SushiBox DeleteProduct(int Id)
+        {
+            SushiBox dbEntry = context.SushiBoxes.FirstOrDefault(p => p.Id == Id);
+            if (dbEntry != null)
+            {
+                context.SushiBoxes.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

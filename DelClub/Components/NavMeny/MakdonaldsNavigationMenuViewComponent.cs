@@ -10,9 +10,9 @@ namespace DelClub.Components
 {
     public class MakdonaldsNavigationMenuViewComponent : ViewComponent
     {
-        private IFoodRepository repository;
+        private IMakdonaldsRepository repository;
 
-        public MakdonaldsNavigationMenuViewComponent(IFoodRepository repo)
+        public MakdonaldsNavigationMenuViewComponent(IMakdonaldsRepository repo)
         {
             repository = repo;
         }
@@ -20,7 +20,7 @@ namespace DelClub.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
-            return View(repository.Foods
+            return View(repository.Makdonalds
                 .Select(x => x.Category)
                 .Distinct()
                 .OrderBy(x => x));

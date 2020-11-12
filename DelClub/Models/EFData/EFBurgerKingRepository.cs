@@ -31,5 +31,38 @@ namespace DelClub.Models.EFData
             }
             context.SaveChanges();
         }
+
+        public void SaveProduct(BurgerKing burgerKing)
+        {
+            if (burgerKing.Id == 0)
+            {
+                context.BurgerKings.Add(burgerKing);
+            }
+            else
+            {
+                BurgerKing dbEntry = context.BurgerKings.FirstOrDefault(p => p.Id == burgerKing.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Img = burgerKing.Img;
+                    dbEntry.Name = burgerKing.Name;
+                    dbEntry.Description = burgerKing.Description;
+                    dbEntry.Category = burgerKing.Category;
+                    dbEntry.Price = burgerKing.Price;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public BurgerKing DeleteProduct(int Id)
+        {
+            BurgerKing dbEntry = context.BurgerKings.FirstOrDefault(p => p.Id == Id);
+            if (dbEntry != null)
+            {
+                context.BurgerKings.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
     }
 }

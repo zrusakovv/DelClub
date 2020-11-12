@@ -37,16 +37,15 @@ namespace DelClub
             });
 
             services.AddTransient<IRestaurantRepository, EFRestaurantRepository>();
-            services.AddTransient<IFoodRepository, EFFoodRepository>();
+            services.AddTransient<IMakdonaldsRepository, EFMakdonaldsRepository>();
             services.AddTransient<IBurgerKingRepository, EFBurgerKingRepository>();
             services.AddTransient<IDominoPizzaRepository, EFDominoPizzaRepository>();
             services.AddTransient<IKfcRepository, EFKfcRepository>();
             services.AddTransient<IMyBoxRepository, EFMyBoxRepository>();
             services.AddTransient<ISushiBoxRepository, EFSushiBoxRepository>();
-            services.AddTransient<IOrderRepository, EFOrderRepository>();
 
 
-            services.AddScoped(sp => SessioïCart.GetCart(sp));
+            services.AddScoped(sp => SessioïMakdonalds.GetCart(sp));
             services.AddScoped(sp => SessionBurgerKing.GetCart(sp));
             services.AddScoped(sp => SessionDominoPizza.GetCart(sp));
             services.AddScoped(sp => SessionKfc.GetCart(sp));

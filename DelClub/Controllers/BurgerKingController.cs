@@ -54,6 +54,19 @@ namespace DelClub.Controllers
             return RedirectToAction("BurgerKingList", new { returnUrl });
         }
 
+        public ViewResult ListOrder() => View(repository.BKOrders.Where(o => !o.Shipped));
+        [HttpPost]
+        public IActionResult MarkShipped(int id)
+        {
+            BKOrder bKOrder = repository.BKOrders.FirstOrDefault(o => o.Id == id);
+            if(bKOrder != null)
+            {
+                bKOrder.Shipped = true;
+                repository.SaveBKOrder(bKOrder);
+            }
+            return RedirectToAction(nameof(ListOrder));
+        }
+
         public ViewResult Checkout() => View(new BKOrder());
 
         [HttpPost]
@@ -79,6 +92,39 @@ namespace DelClub.Controllers
         public ViewResult Completed()
         {
             return View();
+        }
+
+        public ViewResult Index() => View(repository.BurgerKings);
+
+        public ViewResult Edit(int Id) =>
+            View(repository.BurgerKings.FirstOrDefault(p => p.Id == Id));
+
+        [HttpPost]
+        public IActionResult Edit(BurgerKing burgerKing)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(burgerKing);
+                TempData["message"] = $"{burgerKing.Name} был сохранен";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(burgerKing);
+            }
+        }
+
+        public ViewResult Create() => View("Edit", new BurgerKing());
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            BurgerKing deletedProduct = repository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"{deletedProduct.Name} был удален";
+            }
+            return RedirectToAction("Index");
         }
 
     }

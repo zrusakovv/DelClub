@@ -53,6 +53,19 @@ namespace DelClub.Controllers
             return RedirectToAction("SushiBoxList", new { returnUrl });
         }
 
+        public ViewResult ListOrder() => View(repository.SBOrders.Where(o => !o.Shipped));
+        [HttpPost]
+        public IActionResult MarkShipped(int id)
+        {
+            SBOrder sBOrder = repository.SBOrders.FirstOrDefault(o => o.Id == id);
+            if (sBOrder != null)
+            {
+                sBOrder.Shipped = true;
+                repository.SaveSBOrder(sBOrder);
+            }
+            return RedirectToAction(nameof(ListOrder));
+        }
+
         public ViewResult Checkout() => View(new SBOrder());
 
         [HttpPost]
@@ -78,6 +91,39 @@ namespace DelClub.Controllers
         public ViewResult Completed()
         {
             return View();
+        }
+
+        public ViewResult Index() => View(repository.SushiBoxes);
+
+        public ViewResult Edit(int Id) =>
+            View(repository.SushiBoxes.FirstOrDefault(p => p.Id == Id));
+
+        [HttpPost]
+        public IActionResult Edit(SushiBox sushiBox)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(sushiBox);
+                TempData["message"] = $"{sushiBox.Name} был сохранен";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(sushiBox);
+            }
+        }
+
+        public ViewResult Create() => View("Edit", new SushiBox());
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            SushiBox deletedProduct = repository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"{deletedProduct.Name} был удален";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

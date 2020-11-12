@@ -53,6 +53,19 @@ namespace DelClub.Controllers
             return RedirectToAction("KfcList", new { returnUrl });
         }
 
+        public ViewResult ListOrder() => View(repository.KfcOrders.Where(o => !o.Shipped));
+        [HttpPost]
+        public IActionResult MarkShipped(int id)
+        {
+            KfcOrder kfcOrder = repository.KfcOrders.FirstOrDefault(o => o.Id == id);
+            if (kfcOrder != null)
+            {
+                kfcOrder.Shipped = true;
+                repository.SaveKfcOrder(kfcOrder);
+            }
+            return RedirectToAction(nameof(ListOrder));
+        }
+
         public ViewResult Checkout() => View(new KfcOrder());
 
         [HttpPost]
@@ -78,6 +91,39 @@ namespace DelClub.Controllers
         public ViewResult Completed()
         {
             return View();
+        }
+
+        public ViewResult Index() => View(repository.Kfcs);
+
+        public ViewResult Edit(int Id) =>
+            View(repository.Kfcs.FirstOrDefault(p => p.Id == Id));
+
+        [HttpPost]
+        public IActionResult Edit(Kfc kfc)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(kfc);
+                TempData["message"] = $"{kfc.Name} был сохранен";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(kfc);
+            }
+        }
+
+        public ViewResult Create() => View("Edit", new Kfc());
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            Kfc deletedProduct = repository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = $"{deletedProduct.Name} был удален";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

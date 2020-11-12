@@ -10,5 +10,7 @@ namespace DelClub.Models.Interface
         IEnumerable<MyBox> MyBoxes { get; }
         IQueryable<MBOrder> MBOrders { get; }
         void SaveMBOrder(MBOrder order);
+        void SaveProduct(MyBox myBox);
+        MyBox DeleteProduct(int Id);
     }
 }

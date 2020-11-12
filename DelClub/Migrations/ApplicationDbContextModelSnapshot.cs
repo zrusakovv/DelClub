@@ -50,6 +50,9 @@ namespace DelClub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("BKOrders");
@@ -91,31 +94,6 @@ namespace DelClub.Migrations
                     b.ToTable("BurgerKings");
                 });
 
-            modelBuilder.Entity("DelClub.Models.CartLine", b =>
-                {
-                    b.Property<int>("CartLineId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("FoodId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartLineId");
-
-                    b.HasIndex("FoodId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("CartLine");
-                });
-
             modelBuilder.Entity("DelClub.Models.DPOrder", b =>
                 {
                     b.Property<int>("Id")
@@ -146,6 +124,9 @@ namespace DelClub.Migrations
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -186,33 +167,6 @@ namespace DelClub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DominoPizzas");
-                });
-
-            modelBuilder.Entity("DelClub.Models.Food", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Img")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Foods");
                 });
 
             modelBuilder.Entity("DelClub.Models.Kfc", b =>
@@ -282,6 +236,9 @@ namespace DelClub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("KfcOrders");
@@ -318,9 +275,103 @@ namespace DelClub.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("MBOrders");
+                });
+
+            modelBuilder.Entity("DelClub.Models.MDCartLine", b =>
+                {
+                    b.Property<int>("CartLineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("MDOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MakdonaldsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartLineId");
+
+                    b.HasIndex("MDOrderId");
+
+                    b.HasIndex("MakdonaldsId");
+
+                    b.ToTable("MDCartLine");
+                });
+
+            modelBuilder.Entity("DelClub.Models.MDOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Apartment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Entrance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MDOrders");
+                });
+
+            modelBuilder.Entity("DelClub.Models.Makdonalds", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Makdonalds");
                 });
 
             modelBuilder.Entity("DelClub.Models.MyBox", b =>
@@ -357,42 +408,6 @@ namespace DelClub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MyBoxes");
-                });
-
-            modelBuilder.Entity("DelClub.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Apartment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Entrance")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DelClub.Models.Restaurant", b =>
@@ -449,6 +464,9 @@ namespace DelClub.Migrations
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -616,15 +634,15 @@ namespace DelClub.Migrations
                     b.ToTable("SBCartLine");
                 });
 
-            modelBuilder.Entity("DelClub.Models.CartLine", b =>
+            modelBuilder.Entity("DelClub.Models.MDCartLine", b =>
                 {
-                    b.HasOne("DelClub.Models.Food", "Food")
-                        .WithMany()
-                        .HasForeignKey("FoodId");
-
-                    b.HasOne("DelClub.Models.Order", null)
+                    b.HasOne("DelClub.Models.MDOrder", null)
                         .WithMany("Lines")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("MDOrderId");
+
+                    b.HasOne("DelClub.Models.Makdonalds", "Makdonalds")
+                        .WithMany()
+                        .HasForeignKey("MakdonaldsId");
                 });
 
             modelBuilder.Entity("DelClub.Models.ViewModels.BKCartLine", b =>

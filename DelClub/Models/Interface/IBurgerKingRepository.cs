@@ -10,5 +10,7 @@ namespace DelClub.Models.Interface
         IEnumerable<BurgerKing> BurgerKings { get; }
         IQueryable<BKOrder> BKOrders { get; }
         void SaveBKOrder(BKOrder order);
+        void SaveProduct(BurgerKing burgerKing);
+        BurgerKing DeleteProduct(int Id);
     }
 }

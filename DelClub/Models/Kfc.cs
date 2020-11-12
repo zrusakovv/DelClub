@@ -31,6 +31,9 @@ namespace DelClub.Models
         [BindNever]
         public ICollection<KFCCartLine> Lines { get; set; }
 
+        [BindNever]
+        public bool Shipped { get; set; }
+
         [Required(ErrorMessage = "Введите имя")]
         public string Name { get; set; }
 

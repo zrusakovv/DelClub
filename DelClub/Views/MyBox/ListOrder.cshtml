@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MBOrder>
+
+@{ 
+    ViewBag.Title = "MBOrder";
+    Layout = "_AdminLayout";
+}
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped">
+        <tr><th>Имя</th><th colspan="2">Описание</th></tr>
+        @foreach (MBOrder o in Model)
+        {
+            <tr>
+                <td>@o.Name</td>
+                <th>Блюдо</th>
+                <th>Количество</th>
+                <td>
+                    <form asp-action="MarkShipped" method="post">
+                        <input type="hidden" name="Id" value="@o.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Ship
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            @foreach (MBCartLine line in o.Lines)
+            {
+                <tr>
+                    <td colspan="1"></td>
+                    <td>@line.MyBox.Name</td><td>@line.Quantity</td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <div class="text-center">Список пуст</div>
+}

@@ -31,5 +31,37 @@ namespace DelClub.Models.EFData
             }
             context.SaveChanges();
         }
+
+        public void SaveProduct(MyBox myBox)
+        {
+            if (myBox.Id == 0)
+            {
+                context.MyBoxes.Add(myBox);
+            }
+            else
+            {
+                MyBox dbEntry = context.MyBoxes.FirstOrDefault(p => p.Id == myBox.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Img = myBox.Img;
+                    dbEntry.Name = myBox.Name;
+                    dbEntry.Description = myBox.Description;
+                    dbEntry.Category = myBox.Category;
+                    dbEntry.Price = myBox.Price;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public MyBox DeleteProduct(int Id)
+        {
+            MyBox dbEntry = context.MyBoxes.FirstOrDefault(p => p.Id == Id);
+            if (dbEntry != null)
+            {
+                context.MyBoxes.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

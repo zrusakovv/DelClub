@@ -8,10 +8,10 @@ namespace DelClub.Infrastructure
 {
     public class MakdonaldsListViewModel
     {
-        public IEnumerable<Food> Foods { get; set; }
+        public IEnumerable<Makdonalds> Makdonalds { get; set; }
         public string CurrentCategory { get; set; }
 
-        public Cart Cart { get; set; }
+        public CartMakdonalds Cart { get; set; }
         public string ReturnUrl { get; set; }
     }
 }

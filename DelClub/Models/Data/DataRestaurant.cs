@@ -33,16 +33,16 @@ namespace DelClub.Models.Data
                 context.SaveChanges();
             }
 
-            if (!context.Foods.Any()) 
+            if (!context.Makdonalds.Any()) 
             { 
-                context.Foods.AddRange(
-                    new Food { Name = "Двойной Биг Тейсти Большой МакКомбо", 
+                context.Makdonalds.AddRange(
+                    new Makdonalds { Name = "Двойной Биг Тейсти Большой МакКомбо", 
                         Category = "McComboo", 
                         Description = "sss", 
                         Price = 425, 
                         Img = "/img/Food/Makdonalds/McComboo/DoubleBigTastyBigMcCombo.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Биг Тейсти МакКомбо Большой",
                         Category = "McComboo",
@@ -50,7 +50,7 @@ namespace DelClub.Models.Data
                         Price = 349,
                         Img = "/img/Food/Makdonalds/McComboo/BigTastyMcComboBig.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Двойной Роял МакКомбо Большой",
                         Category = "McComboo",
@@ -58,7 +58,7 @@ namespace DelClub.Models.Data
                         Price = 329,
                         Img = "/img/Food/Makdonalds/McComboo/DoubleRoyaleMcComboLarge.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Двойной Биг Мак Большой МакКОМБО",
                         Category = "McComboo",
@@ -66,7 +66,7 @@ namespace DelClub.Models.Data
                         Price = 319,
                         Img = "/img/Food/Makdonalds/McComboo/DoubleBigMacBigMcCOMBO.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Биг Тейсти Джуниор Большой МакКомбо",
                         Category = "McComboo",
@@ -74,7 +74,7 @@ namespace DelClub.Models.Data
                         Price = 305,
                         Img = "/img/Food/Makdonalds/McComboo/BigTastyJuniorBigMcCombo.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Грик Мак Фреш Большой МакКомбо",
                         Category = "McComboo",
@@ -82,7 +82,7 @@ namespace DelClub.Models.Data
                         Price = 299,
                         Img = "/img/Food/Makdonalds/McComboo/GrickMacFreshBigMcCombo.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Двойной Биг Тейсти",
                         Category = "Sandwiches",
@@ -90,21 +90,21 @@ namespace DelClub.Models.Data
                         Price = 325,
                         Img = "/img/Food/Makdonalds/Sandwiches/DoubleBigTasty.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Биг Тейсти",
                         Category = "Sandwiches",
                         Description = "sss",
                         Price = 249,
                         Img = "/img/Food/Makdonalds/Sandwiches/BigTasty.jpg"
-                    }, new Food
+                    }, new Makdonalds
                     {
                         Name = "Двойной Роял",
                         Category = "Sandwiches",
                         Description = "sss",
                         Price = 219,
                         Img = "/img/Food/Makdonalds/Sandwiches/DoubleRoyal.jpg"
-                    }, new Food
+                    }, new Makdonalds
                     {
                         Name = "Двойной Биг Мак",
                         Category = "Sandwiches",
@@ -112,7 +112,7 @@ namespace DelClub.Models.Data
                         Price = 199,
                         Img = "/img/Food/Makdonalds/Sandwiches/DoubleBigMac.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Биг Тейсти Джуниор",
                         Category = "Sandwiches",
@@ -120,14 +120,14 @@ namespace DelClub.Models.Data
                         Price = 185,
                         Img = "/img/Food/Makdonalds/Sandwiches/BigTacyJunior.jpg"
                     },
-                    new Food
+                    new Makdonalds
                     {
                         Name = "Грик Мак Фреш",
                         Category = "Sandwiches",
                         Description = "sss",
                         Price = 175,
                         Img = "/img/Food/Makdonalds/Sandwiches/GrickMacFresh.jpg"
-                    }, new Food
+                    }, new Makdonalds
                     {
                         Name = "Чикен Грик Мак",
                         Category = "Sandwiches",

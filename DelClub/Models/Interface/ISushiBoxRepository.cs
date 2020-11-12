@@ -10,5 +10,7 @@ namespace DelClub.Models.Interface
         IEnumerable<SushiBox> SushiBoxes { get; }
         IQueryable<SBOrder> SBOrders { get; }
         void SaveSBOrder(SBOrder order);
+        void SaveProduct(SushiBox sushiBox);
+        SushiBox DeleteProduct(int Id);
     }
 }

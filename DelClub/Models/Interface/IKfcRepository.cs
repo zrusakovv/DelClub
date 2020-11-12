@@ -10,5 +10,7 @@ namespace DelClub.Models.Interface
         IEnumerable<Kfc> Kfcs { get; }
         IQueryable<KfcOrder> KfcOrders { get; }
         void SaveKfcOrder(KfcOrder order);
+        void SaveProduct(Kfc kfc);
+        Kfc DeleteProduct(int Id);
     }
 }

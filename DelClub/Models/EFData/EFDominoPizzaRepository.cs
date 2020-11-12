@@ -31,5 +31,37 @@ namespace DelClub.Models.EFData
             }
             context.SaveChanges();
         }
+
+        public void SaveProduct(DominoPizza dominoPizza)
+        {
+            if (dominoPizza.Id == 0)
+            {
+                context.DominoPizzas.Add(dominoPizza);
+            }
+            else
+            {
+                DominoPizza dbEntry = context.DominoPizzas.FirstOrDefault(p => p.Id == dominoPizza.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Img = dominoPizza.Img;
+                    dbEntry.Name = dominoPizza.Name;
+                    dbEntry.Description = dominoPizza.Description;
+                    dbEntry.Category = dominoPizza.Category;
+                    dbEntry.Price = dominoPizza.Price;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public DominoPizza DeleteProduct(int Id)
+        {
+            DominoPizza dbEntry = context.DominoPizzas.FirstOrDefault(p => p.Id == Id);
+            if (dbEntry != null)
+            {
+                context.DominoPizzas.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }
