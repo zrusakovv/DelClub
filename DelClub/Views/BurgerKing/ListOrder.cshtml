@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<BKOrder>
 
-@{ 
+@{
     ViewBag.Title = "BKOrders";
     Layout = "_AdminLayout";
 }
@@ -8,13 +8,11 @@
 @if (Model.Count() > 0)
 {
     <table class="table table-bordered table-striped">
-        <tr><th>Имя</th><th colspan="2">Описание</th></tr>
-        @foreach(BKOrder o in Model)
+        <tr><th>Имя</th><th>Описание</th><th>Количество</th></tr>
+        @foreach (BKOrder o in Model)
         {
             <tr>
-                <td>@o.Name</td>
-                <th>Блюдо</th>
-                <th>Количество</th>
+                <td colspan="3">@o.Name</td>
                 <td>
                     <form asp-action="MarkShipped" method="post">
                         <input type="hidden" name="Id" value="@o.Id" />
@@ -24,14 +22,19 @@
                     </form>
                 </td>
             </tr>
-            @foreach(BKCartLine line in o.Lines)
+            @foreach (BKCartLine line in o.Lines)
             {
                 <tr>
                     <td colspan="1"></td>
-                    <td>@line.BurgerKing.Name</td><td>@line.Quantity</td>
+                    <td>@line.BurgerKing.Name</td>
+                    <td>@line.Quantity</td>
                     <td></td>
                 </tr>
             }
         }
     </table>
+}
+else
+{
+    <div class="text-center">Список пуст</div>
 }
