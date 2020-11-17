@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DelClub.Models.Data
 {
-    public class AppIdentityDbContext : IdentityDbContext<IdentityUser>
+    public class AppIdentityDbContext : IdentityDbContext<User>
     {
         public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
-        : base(options) { }
+        : base(options) { Database.EnsureCreated(); }
     }
 }

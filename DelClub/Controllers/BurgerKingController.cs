@@ -2,6 +2,7 @@
 using DelClub.Models;
 using DelClub.Models.Interface;
 using DelClub.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,7 @@ namespace DelClub.Controllers
         }
 
         public ViewResult ListOrder() => View(repository.BKOrders.Where(o => !o.Shipped));
+
         [HttpPost]
         public IActionResult MarkShipped(int id)
         {

@@ -13,6 +13,23 @@
             <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                 <h2><i class="fas fa-crow">Del Club</i></h2>
             </a>
+
+            <div class="text-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>@User.Identity.Name</p>
+
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input type="submit" value="Выход" />
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Вход</a>
+                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                }
+            </div>
+
             <form class="form-inline ">
                 <h3>Корзина<i class="fa fa-shopping-cart" aria-hidden="true"></i></h3>
             </form>

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DelClub.Models;
 using DelClub.Models.Data;
 using DelClub.Models.EFData;
 using DelClub.Models.Interface;
 using DelClub.Models.Sessioïs;
-using DelClub.Models.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,9 +31,9 @@ namespace DelClub
                 options.UseSqlServer(
                     Configuration["Data:DelClubIdentity:ConnectionString"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppIdentityDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
+
 
             services.AddControllersWithViews(mvcOtions =>
             {
@@ -85,6 +80,7 @@ namespace DelClub
             
 
             DataRestaurant.EnsurePopulated(app);
+
         }
     }
 }

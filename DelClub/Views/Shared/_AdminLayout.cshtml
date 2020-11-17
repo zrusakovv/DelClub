@@ -10,8 +10,10 @@
     <title>@ViewBag.Title</title>
 </head>
 <body class="m-1 p-1">
-    <div class="bg-info p-2">
-        <h4>@ViewBag.Title</h4>
+    <div class="bg-info p-2 row">
+        <div class="col">
+            <h4>@ViewBag.Title</h4>
+        </div>
     </div>
     @if(TempData["message"] != null)
     {
