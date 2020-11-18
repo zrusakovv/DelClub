@@ -31,7 +31,16 @@ namespace DelClub
                 options.UseSqlServer(
                     Configuration["Data:DelClubIdentity:ConnectionString"]));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(opt=>
+            {
+                opt.User.RequireUniqueEmail = true;
+                opt.User.AllowedUserNameCharacters = ".@abcdefghijklmnopqrstuvwxyz";
+                opt.Password.RequiredLength = 5;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireDigit = false;
+            })
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
 
 

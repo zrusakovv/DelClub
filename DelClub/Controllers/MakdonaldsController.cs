@@ -1,6 +1,7 @@
 ﻿using DelClub.Infrastructure;
 using DelClub.Models;
 using DelClub.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -27,6 +28,7 @@ namespace DelClub.Controllers
                 ReturnUrl = returnUrl
             });
 
+        [Authorize(Roles = "user")]
         public RedirectToActionResult AddToCart(int Id, string returnUrl)
         {
             Makdonalds makdonalds = repository.Makdonalds
@@ -48,7 +50,8 @@ namespace DelClub.Controllers
             }
             return RedirectToAction("MakdonaldsList", new { returnUrl });
         }
-        
+
+        [Authorize(Roles = "moderator")]
         public ViewResult ListOrder() => View(repository.MDOrders.Where(o => !o.Shipped));
         [HttpPost]
         public IActionResult MarkShipped(int id)
@@ -62,6 +65,7 @@ namespace DelClub.Controllers
             return RedirectToAction(nameof(ListOrder));
         }
 
+        [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new MDOrder());
 
         [HttpPost]
@@ -89,6 +93,7 @@ namespace DelClub.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ViewResult Index() => View(repository.Makdonalds);
 
         public ViewResult Edit(int Id) =>

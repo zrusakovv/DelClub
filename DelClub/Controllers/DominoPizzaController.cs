@@ -2,6 +2,7 @@
 using DelClub.Models;
 using DelClub.Models.Interface;
 using DelClub.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace DelClub.Controllers
                 ReturnUrl = returnUrl
             });
 
+        [Authorize(Roles = "user")]
         public RedirectToActionResult AddToCart(int Id, string returnUrl)
         {
             DominoPizza dominoPizza = repository.DominoPizzas
@@ -53,6 +55,7 @@ namespace DelClub.Controllers
             return RedirectToAction("DominoPizzaList", new { returnUrl });
         }
 
+        [Authorize(Roles = "moderator")]
         public ViewResult ListOrder() => View(repository.DPOrders.Where(o => !o.Shipped));
         [HttpPost]
         public IActionResult MarkShipped(int id)
@@ -66,6 +69,7 @@ namespace DelClub.Controllers
             return RedirectToAction(nameof(ListOrder));
         }
 
+        [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new DPOrder());
 
         [HttpPost]
@@ -93,6 +97,7 @@ namespace DelClub.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ViewResult Index() => View(repository.DominoPizzas);
 
         public ViewResult Edit(int Id) =>

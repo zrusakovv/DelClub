@@ -4,10 +4,7 @@ using DelClub.Models.Interface;
 using DelClub.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DelClub.Controllers
 {
@@ -33,6 +30,7 @@ namespace DelClub.Controllers
                 ReturnUrl = returnUrl
             });
 
+        [Authorize(Roles = "user")]
         public RedirectToActionResult AddToCart(int Id, string returnUrl)
         {
             BurgerKing burgerKing = repository.BurgerKings
@@ -55,8 +53,10 @@ namespace DelClub.Controllers
             return RedirectToAction("BurgerKingList", new { returnUrl });
         }
 
+        [Authorize(Roles = "moderator")]
         public ViewResult ListOrder() => View(repository.BKOrders.Where(o => !o.Shipped));
 
+        
         [HttpPost]
         public IActionResult MarkShipped(int id)
         {
@@ -69,6 +69,7 @@ namespace DelClub.Controllers
             return RedirectToAction(nameof(ListOrder));
         }
 
+        [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new BKOrder());
 
         [HttpPost]
@@ -96,6 +97,7 @@ namespace DelClub.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ViewResult Index() => View(repository.BurgerKings);
 
         public ViewResult Edit(int Id) =>
