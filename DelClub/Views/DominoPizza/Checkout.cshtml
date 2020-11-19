@@ -1,28 +1,29 @@
 ﻿@model DPOrder
 
-<h2>Check out now</h2>
-<p>Please enter your details, and we'll ship your goods right away!</p>
-<div asp-validation-summary="All" class="text-danger"></div>
-<form asp-action="Checkout" method="post">
-    <div class="form-group">
-        <label>Имя:</label><input asp-for="Name" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Город</label><input asp-for="City" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>адрес</label><input asp-for="Address" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Номер дома</label><input asp-for="Entrance" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Номер подъезда</label><input asp-for="Number" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Номер квартиры</label><input asp-for="Apartment" class="form-control" />
-    </div>
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Complete Order" />
-    </div>
-</form>
+<div class="ml-3">
+    <h2>Введите свои данные, и мы сразу же отправим ваш товар!</h2>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-action="Checkout" method="post">
+        <div class="form-group">
+            <label>Имя:</label><input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Город</label><input asp-for="City" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>адрес</label><input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Номер дома</label><input asp-for="Entrance" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Номер подъезда</label><input asp-for="Number" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Номер квартиры</label><input asp-for="Apartment" class="form-control" />
+        </div>
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="Complete Order" />
+        </div>
+    </form>
+</div>

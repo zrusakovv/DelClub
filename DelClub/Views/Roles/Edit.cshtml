@@ -3,7 +3,7 @@
 
 <h2>Изменение ролей для пользователя @Model.UserEmail</h2>
 
-<form asp-action="Edit" method="post">
+<form asp-action="Edit" method="post" class="ml-3">
     <input type="hidden" name="userId" value="@Model.UserId" />
     <div class="form-group">
         @foreach (IdentityRole role in Model.AllRoles)
