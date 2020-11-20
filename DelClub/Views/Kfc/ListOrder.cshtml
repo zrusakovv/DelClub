@@ -11,17 +11,19 @@
         <tr><th>Имя</th><th>Описание</th><th>Количество</th></tr>
         @foreach (KfcOrder o in Model)
         {
+            <td></td>
             <tr>
                 <td colspan="3">@o.Name</td>
                 <td>
                     <form asp-action="MarkShipped" method="post">
                         <input type="hidden" name="Id" value="@o.Id" />
                         <button type="submit" class="btn btn-sm btn-danger">
-                            Ship
+                            Принять
                         </button>
                     </form>
                 </td>
             </tr>
+
             @foreach (KFCCartLine line in o.Lines)
             {
                 <tr>
@@ -30,6 +32,16 @@
                     <td></td>
                 </tr>
             }
+
+            <tr>
+                <th>Адрес</th><th>Номер дома</th><th>Номер подъезда</th><th>Номер квартиры</th>
+            </tr>
+            <tr>
+                <td>@o.Address</td>
+                <td>@o.Entrance</td>
+                <td>@o.Number</td>
+                <td>@o.Apartment</td>
+            </tr>
         }
     </table>
 }
