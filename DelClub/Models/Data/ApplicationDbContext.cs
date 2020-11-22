@@ -2,11 +2,13 @@
 
 namespace DelClub.Models.Data
 {
+    //Класс контекста БД
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }
 
+        //Предоставление доступа к объектам для чтения и записи данных в приложении
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Makdonalds> Makdonalds { get; set; }
         public DbSet<BurgerKing> BurgerKings { get; set; }

@@ -1,9 +1,14 @@
 ﻿@model IEnumerable<string>
 
+    <a class="btn btn-light"
+       asp-action="BurgerKingList" asp-controller="BurgerKing"
+       asp-route-caregory="">
+        Все категории
+    </a>
 
 @foreach (string category in Model)
 {
-    <a class="btn btn-light @(category == ViewBag.SelectedCategory ? "btn-info" : "btn-secondary")"
+    <a class="btn btn-light"
        asp-action="BurgerKingList"
        asp-controller="BurgerKing"
        asp-route-category="@category">

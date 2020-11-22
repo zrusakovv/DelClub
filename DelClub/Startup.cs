@@ -33,13 +33,13 @@ namespace DelClub
 
             services.AddIdentity<User, IdentityRole>(opt=>
             {
-                opt.User.RequireUniqueEmail = true;
-                opt.User.AllowedUserNameCharacters = ".@abcdefghijklmnopqrstuvwxyz";
-                opt.Password.RequiredLength = 5;
-                opt.Password.RequireNonAlphanumeric = false;
-                opt.Password.RequireLowercase = false;
-                opt.Password.RequireUppercase = false;
-                opt.Password.RequireDigit = false;
+                opt.User.RequireUniqueEmail = true; // уникальный email
+                opt.User.AllowedUserNameCharacters = ".@abcdefghijklmnopqrstuvwxyz"; // допустимые символы
+                opt.Password.RequiredLength = 5; // минимальная длина
+                opt.Password.RequireNonAlphanumeric = false; // требуются ли не алфавитно-цифровые символы
+                opt.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+                opt.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                opt.Password.RequireDigit = false; // требуются ли цифры
             })
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
 
@@ -74,10 +74,6 @@ namespace DelClub
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();

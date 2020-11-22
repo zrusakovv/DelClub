@@ -30,6 +30,7 @@ namespace DelClub.Controllers
                 ReturnUrl = returnUrl
             });
 
+        //Метод обработки нажатия на кнопку, добавления товара 
         [Authorize(Roles = "user")]
         public RedirectToActionResult AddToCart(int Id, string returnUrl)
         {
@@ -42,6 +43,7 @@ namespace DelClub.Controllers
             return RedirectToAction("BurgerKingList", new { returnUrl });
         }
 
+        //Метод обработки нажатия на кнопк, удаления товара
         public RedirectToActionResult RemoveFromCart(int Id, string returnUrl)
         {
             BurgerKing burgerKing = repository.BurgerKings.FirstOrDefault(p => p.Id == Id);
@@ -53,10 +55,11 @@ namespace DelClub.Controllers
             return RedirectToAction("BurgerKingList", new { returnUrl });
         }
 
+        //Метод выводящий все сделанные заказы
         [Authorize(Roles = "moderator")]
         public ViewResult ListOrder() => View(repository.BKOrders.Where(o => !o.Shipped));
 
-        
+        //Метод сигннализирующий о принятии заказа в обработку
         [HttpPost]
         public IActionResult MarkShipped(int id)
         {
@@ -69,6 +72,7 @@ namespace DelClub.Controllers
             return RedirectToAction(nameof(ListOrder));
         }
 
+        //Метод Checkout возвращает представление для указания адреса доставки
         [Authorize(Roles = "user")]
         public ViewResult Checkout() => View(new BKOrder());
 
@@ -97,9 +101,11 @@ namespace DelClub.Controllers
             return View();
         }
 
+        //Метод выводит все товары для администрирования
         [Authorize(Roles = "admin")]
         public ViewResult Index() => View(repository.BurgerKings);
-
+        
+        //Изменение товара
         public ViewResult Edit(int Id) =>
             View(repository.BurgerKings.FirstOrDefault(p => p.Id == Id));
 
@@ -118,8 +124,10 @@ namespace DelClub.Controllers
             }
         }
 
+        //Метод создания новых товаров 
         public ViewResult Create() => View("Edit", new BurgerKing());
 
+        //Метод удаления товаров из списка
         [HttpPost]
         public IActionResult Delete(int Id)
         {

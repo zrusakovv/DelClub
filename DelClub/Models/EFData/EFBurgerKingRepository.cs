@@ -18,10 +18,12 @@ namespace DelClub.Models.EFData
 
         public IEnumerable<BurgerKing> BurgerKings => context.BurgerKings;
 
+        //Метод извлечения заказов
         public IQueryable<BKOrder> BKOrders => context.BKOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.BurgerKing);
 
+        //Метод сохранения заказов
         public void SaveBKOrder(BKOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.BurgerKing));
@@ -32,6 +34,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(BurgerKing burgerKing)
         {
             if (burgerKing.Id == 0)
@@ -53,6 +56,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public BurgerKing DeleteProduct(int Id)
         {
             BurgerKing dbEntry = context.BurgerKings.FirstOrDefault(p => p.Id == Id);

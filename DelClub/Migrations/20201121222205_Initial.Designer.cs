@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DelClub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201112190143_Initial")]
+    [Migration("20201121222205_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

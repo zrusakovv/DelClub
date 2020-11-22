@@ -21,6 +21,7 @@ namespace DelClub.Controllers
             this.signInManager = signInManager;
         }
 
+        //Регистрация нового пользователя
         [HttpGet]
         public IActionResult Register()
         {
@@ -32,12 +33,18 @@ namespace DelClub.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year };
+                User user = new User 
+                { 
+                    Email = model.Email, 
+                    UserName = model.Email,
+                    Year = model.Year 
+                };
                 
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
+                    // установка куки
                     await signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -52,6 +59,7 @@ namespace DelClub.Controllers
             return View(model);
         }
 
+        //Вход под своим логином
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -72,6 +80,7 @@ namespace DelClub.Controllers
 
                 if (result.Succeeded)
                 {
+                    // проверяем, принадлежит ли URL приложению
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
@@ -93,6 +102,7 @@ namespace DelClub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            // удаляем аутентификационные куки
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

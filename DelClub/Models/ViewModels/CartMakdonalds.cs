@@ -8,6 +8,7 @@ namespace DelClub.Models
     {
         private List<MDCartLine> lineCollection = new List<MDCartLine>();
 
+        //Добавление товара в корзину
         public virtual void AddItem(Makdonalds makdonalds, int quantity)
         {
             MDCartLine line = lineCollection
@@ -27,10 +28,13 @@ namespace DelClub.Models
             }
         }
 
+        //Удаление товара из корзины
         public virtual void RemoveLine(Makdonalds makdonalds) => lineCollection.RemoveAll(l => l.Makdonalds.Id == makdonalds.Id);
 
+        //Вычисление общей стоимости
         public virtual int ComputeTotalValue() => lineCollection.Sum(e => e.Makdonalds.Price * e.Quantity);
 
+        //Очистка
         public virtual void Clear() => lineCollection.Clear();
 
         public virtual IEnumerable<MDCartLine> Lines => lineCollection;

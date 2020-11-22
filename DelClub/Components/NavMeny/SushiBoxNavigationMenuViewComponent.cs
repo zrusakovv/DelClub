@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DelClub.Controllers
 {
+    //Навигация по категориям продуктов
     public class SushiBoxNavigationMenuViewComponent : ViewComponent
     {
         private ISushiBoxRepository repository;
@@ -15,6 +16,7 @@ namespace DelClub.Controllers
             this.repository = repository;
         }
 
+        //Выборка и упорядочивание набора категорияй
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];

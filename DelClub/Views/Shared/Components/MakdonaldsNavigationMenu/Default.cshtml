@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<string>
 
+    <a class="btn btn-light"
+       asp-action="MakdonaldsList" asp-controller="Makdonalds"
+       asp-route-caregory="">
+        Все категории
+    </a>
 
 @foreach (string category in Model)
 {

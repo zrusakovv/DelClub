@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DelClub.Models.Data
 {
+    //Заполнение БД первоначальными данными
     public static class DataRestaurant
     {
         public static void EnsurePopulated(IApplicationBuilder app)

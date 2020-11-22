@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<string>
 
+    <a class="btn btn-light"
+       asp-action="MyBoxList" asp-controller="MyBox"
+       asp-route-caregory="">
+        Все категории
+    </a>
 
 @foreach (string category in Model)
 {

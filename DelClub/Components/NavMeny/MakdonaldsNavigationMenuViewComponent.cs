@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DelClub.Components
 {
+    //Навигация по категориям продуктов
     public class MakdonaldsNavigationMenuViewComponent : ViewComponent
     {
         private IMakdonaldsRepository repository;
@@ -17,6 +18,7 @@ namespace DelClub.Components
             repository = repo;
         }
 
+        //Выборка и упорядочивание набора категорияй
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];

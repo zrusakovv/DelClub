@@ -18,10 +18,12 @@ namespace DelClub.Models.EFData
 
         public IEnumerable<Kfc> Kfcs => context.Kfcs;
 
+        //Метод извлечения заказов
         public IQueryable<KfcOrder> KfcOrders => context.KfcOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.Kfc);
 
+        //Метод сохранения заказов
         public void SaveKfcOrder(KfcOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.Kfc));
@@ -32,6 +34,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(Kfc kfc)
         {
             if (kfc.Id == 0)
@@ -53,6 +56,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public Kfc DeleteProduct(int Id)
         {
             Kfc dbEntry = context.Kfcs.FirstOrDefault(p => p.Id == Id);

@@ -18,10 +18,12 @@ namespace DelClub.Models.EFData
 
         public IEnumerable<MyBox> MyBoxes => context.MyBoxes;
 
+        //Метод извлечения заказов
         public IQueryable<MBOrder> MBOrders => context.MBOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.MyBox);
 
+        //Метод сохранения заказов
         public void SaveMBOrder(MBOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.MyBox));
@@ -32,6 +34,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(MyBox myBox)
         {
             if (myBox.Id == 0)
@@ -53,6 +56,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public MyBox DeleteProduct(int Id)
         {
             MyBox dbEntry = context.MyBoxes.FirstOrDefault(p => p.Id == Id);

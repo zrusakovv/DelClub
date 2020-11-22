@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace DelClub.Models.ViewModels
 {
+    //Корзина покупок
     public class CartKfc
     {
         private List<KFCCartLine> lineCollection = new List<KFCCartLine>();
 
+        //Добавление товара в корзину
         public virtual void AddItem(Kfc kfc, int quantity)
         {
             KFCCartLine line = lineCollection
@@ -29,10 +31,13 @@ namespace DelClub.Models.ViewModels
             }
         }
 
+        //Удаление товара из корзины
         public virtual void RemoveLine(Kfc kfc) => lineCollection.RemoveAll(l => l.Kfc.Id == kfc.Id);
-
+       
+        //Вычисление общей стоимости
         public virtual int ComputeTotalValue() => lineCollection.Sum(e => e.Kfc.Price * e.Quantity);
-
+        
+        //Очистка
         public virtual void Clear() => lineCollection.Clear();
 
         public virtual IEnumerable<KFCCartLine> Lines => lineCollection;

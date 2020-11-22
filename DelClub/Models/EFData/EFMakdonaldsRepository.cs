@@ -17,10 +17,12 @@ namespace DelClub.Models.Data
 
         public IEnumerable<Makdonalds> Makdonalds => context.Makdonalds;
 
+        //Метод извлечения заказов
         public IQueryable<MDOrder> MDOrders => context.MDOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.Makdonalds);
 
+        //Метод сохранения заказов
         public void SaveMDOrder(MDOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.Makdonalds));
@@ -31,6 +33,7 @@ namespace DelClub.Models.Data
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(Makdonalds makdonalds)
         {
             if (makdonalds.Id == 0)
@@ -52,6 +55,7 @@ namespace DelClub.Models.Data
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public Makdonalds DeleteProduct(int Id)
         {
             Makdonalds dbEntry = context.Makdonalds.FirstOrDefault(p => p.Id == Id);

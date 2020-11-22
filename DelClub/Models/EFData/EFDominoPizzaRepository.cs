@@ -18,10 +18,12 @@ namespace DelClub.Models.EFData
 
         public IEnumerable<DominoPizza> DominoPizzas => context.DominoPizzas;
 
+        //Метод извлечения заказов
         public IQueryable<DPOrder> DPOrders => context.DPOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.DominoPizza);
 
+        //Метод сохранения заказов
         public void SaveDPOrder(DPOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.DominoPizza));
@@ -32,6 +34,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(DominoPizza dominoPizza)
         {
             if (dominoPizza.Id == 0)
@@ -53,6 +56,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public DominoPizza DeleteProduct(int Id)
         {
             DominoPizza dbEntry = context.DominoPizzas.FirstOrDefault(p => p.Id == Id);

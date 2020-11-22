@@ -23,6 +23,7 @@ namespace DelClub.Controllers
 
         public IActionResult Create() => View();
 
+        //Добавление новой роли
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -46,6 +47,7 @@ namespace DelClub.Controllers
             return View(name);
         }
 
+        //Удаление из списка ролей
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -59,8 +61,10 @@ namespace DelClub.Controllers
             return RedirectToAction("Index");
         }
 
+        //Список пользователей
         public IActionResult UserList() => View(userManager.Users.ToList());
 
+        //Изменение прав доступа для роли
         public async Task<IActionResult> Edit(string userId)
         {
             User user = await userManager.FindByIdAsync(userId);

@@ -18,10 +18,12 @@ namespace DelClub.Models.EFData
 
         public IEnumerable<SushiBox> SushiBoxes => context.SushiBoxes;
 
+        //Метод извлечения заказов
         public IQueryable<SBOrder> SBOrders => context.SBOrders
             .Include(o => o.Lines)
             .ThenInclude(l => l.SushiBox);
 
+        //Метод сохранения заказов
         public void SaveSBOrder(SBOrder order)
         {
             context.AttachRange(order.Lines.Select(l => l.SushiBox));
@@ -32,6 +34,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Сохранение продукта
         public void SaveProduct(SushiBox sushiBox)
         {
             if (sushiBox.Id == 0)
@@ -53,6 +56,7 @@ namespace DelClub.Models.EFData
             context.SaveChanges();
         }
 
+        //Удаление продукта
         public SushiBox DeleteProduct(int Id)
         {
             SushiBox dbEntry = context.SushiBoxes.FirstOrDefault(p => p.Id == Id);

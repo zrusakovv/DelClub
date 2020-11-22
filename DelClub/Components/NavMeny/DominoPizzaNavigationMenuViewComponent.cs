@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DelClub.Components
 {
+    //Навигация по категориям продуктов
     public class DominoPizzaNavigationMenuViewComponent : ViewComponent
     {
         private IDominoPizzaRepository repository;
@@ -15,6 +16,7 @@ namespace DelClub.Components
             this.repository = repository;
         }
 
+        //Выборка и упорядочивание набора категорияй
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];

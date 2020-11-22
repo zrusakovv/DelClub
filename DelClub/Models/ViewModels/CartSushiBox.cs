@@ -10,6 +10,7 @@ namespace DelClub.Models.ViewModels
     {
         private List<SBCartLine> lineCollection = new List<SBCartLine>();
 
+        //Добавление товара в корзину
         public virtual void AddItem(SushiBox sushiBox, int quantity)
         {
             SBCartLine line = lineCollection
@@ -29,10 +30,13 @@ namespace DelClub.Models.ViewModels
             }
         }
 
+        //Удаление товара из корзины
         public virtual void RemoveLine(SushiBox sushiBox) => lineCollection.RemoveAll(l => l.SushiBox.Id == sushiBox.Id);
 
+        //Вычисление общей стоимости
         public virtual int ComputeTotalValue() => lineCollection.Sum(e => e.SushiBox.Price * e.Quantity);
 
+        //Очистка
         public virtual void Clear() => lineCollection.Clear();
 
         public virtual IEnumerable<SBCartLine> Lines => lineCollection;

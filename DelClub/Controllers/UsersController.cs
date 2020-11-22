@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DelClub.Controllers
 {
+    //Управление пользователями
     public class UsersController : Controller
     {
         UserManager<User> userManager;
@@ -22,6 +23,7 @@ namespace DelClub.Controllers
             return View(userManager.Users.ToList());
         }
 
+        //Добавление нового пользователя при помощи администратора
         public IActionResult Create() => View();
 
         [HttpPost]
@@ -53,6 +55,7 @@ namespace DelClub.Controllers
             return View(model);
         }
 
+        //Изменение параметров пользователя
         public async Task<IActionResult> Edit(string id)
         {
             User user = await userManager.FindByIdAsync(id);
@@ -103,6 +106,7 @@ namespace DelClub.Controllers
             return View(model);
         }
 
+        //Удаление пользователя
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
@@ -116,6 +120,7 @@ namespace DelClub.Controllers
             return RedirectToAction("Index");
         }
 
+        //Изменение пароля
         public async Task<IActionResult> ChangePassword(string id)
         {
             User user = await userManager.FindByIdAsync(id);
