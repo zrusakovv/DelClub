@@ -100,7 +100,7 @@ namespace DelClub.Controllers
         }
 
         //Метод выводит все товары для администрирования
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "moderator")]
         public ViewResult Index() => View(repository.Makdonalds);
 
         //Изменение товара

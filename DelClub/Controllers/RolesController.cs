@@ -1,5 +1,6 @@
 ﻿using DelClub.Models;
 using DelClub.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -19,8 +20,10 @@ namespace DelClub.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Index() => View(roleManager.Roles.ToList());
 
+        [Authorize(Roles = "admin")]
         public IActionResult Create() => View();
 
         //Добавление новой роли
@@ -62,6 +65,7 @@ namespace DelClub.Controllers
         }
 
         //Список пользователей
+        [Authorize(Roles = "admin")]
         public IActionResult UserList() => View(userManager.Users.ToList());
 
         //Изменение прав доступа для роли

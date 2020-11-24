@@ -1,5 +1,6 @@
 ﻿using DelClub.Models;
 using DelClub.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,12 +19,14 @@ namespace DelClub.Controllers
             this.userManager = userManager;
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             return View(userManager.Users.ToList());
         }
 
         //Добавление нового пользователя при помощи администратора
+        [Authorize(Roles = "admin")]
         public IActionResult Create() => View();
 
         [HttpPost]
