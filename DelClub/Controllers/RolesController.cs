@@ -54,7 +54,7 @@ namespace DelClub.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            IdentityRole role = await roleManager.FindByNameAsync(id);
+            IdentityRole role = await roleManager.FindByIdAsync(id);
 
             if(role != null)
             {
